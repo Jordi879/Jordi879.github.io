@@ -3,16 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Principal</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Página de Registro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 90%;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 95%;
+                padding: 10px;
+            }
+        }
+
+        #form-page {
+            display: none;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        #form-page input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #form-page #submit-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+        }
+
+        #form-page #submit-btn:hover {
+            background-color: #218838;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <img src="imagen.jpg" alt="Imagen Principal" class="image">
-        <button id="continuarBtn">Continuar</button>
+    <div id="landing-page" class="container">
+        <img src="/api/placeholder/400/300" alt="Imagen de Ejemplo">
+        <button id="continue-btn" class="btn">Continuar</button>
     </div>
 
-    
+    <div id="form-page" class="container">
+        <form id="user-form">
+            <input type="email" id="email" placeholder="Correo electrónico" required>
+            <input type="password" id="password" placeholder="Contraseña" required>
+            <button type="submit" id="submit-btn" class="btn">Enviar</button>
+        </form>
+        <p id="click-count">Número de clicks: 0</p>
+    </div>
+
+    <script>
+        // URL del script de Google Sheets (debes reemplazar con tu propio script de despliegue)
+        const GOOGLE_SHEETS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxblh_zYowMTpvZEBB6mOuk2BthipthxiQNkQCfq7CH8YAASs6GhJ-_aMj1QwEAy5jq/exec';
+
+        // Elementos del DOM
+        const landingPage = document.getElementById('landing-page');
+        const formPage = document.getElementById('form-page');
+        const continueBtn = document.getElementById('continue-btn');
+        const userForm = document.getElementById('user-form');
+        const emailInput = document.getElementById('email');
+        const clickCountElement = document.getElementById('click-count');
+
+        // Variables para contar
+        let clickCount = 0;
+
+        // Registrar visita al cargar la página
+        fetch(GOOGLE_SHEETS_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                action: 'registerVisit'
+            })
+        });
+
+        // Evento para cambiar a la página de formulario
+        continueBtn.addEventListener('click', () => {
+            landingPage.style.display = 'none';
+            formPage.style.display = 'block';
+            
+            // Incrementar y mostrar contador de clicks
+            clickCount++;
+            clickCountElement.textContent = `Número de clicks: ${clickCount}`;
+
+            // Enviar información de click a Google Sheets
+            fetch(GOOGLE_SHEETS_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    action: 'registerClick'
+                })
+            });
+        });
+
+        // Evento para manejar el envío del formulario
+        userForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Obtener correo
+            const email = emailInput.value;
+
+            // Enviar correo a Google Sheets
+            fetch(GOOGLE_SHEETS_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    action: 'registerEmail',
+                    email: email
+                })
+            });
+
+            alert('Correo guardado exitosamente');
+        });
+    </script>
 </body>
-<script src="script.js"></script>
 </html>
