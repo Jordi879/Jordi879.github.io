@@ -1,3 +1,4 @@
+/* Estilos generales */
 body {
     font-family: Arial, sans-serif;
     display: flex;
@@ -37,13 +38,6 @@ img {
     background-color: #0056b3;
 }
 
-@media (max-width: 600px) {
-    .container {
-        width: 95%;
-        padding: 10px;
-    }
-}
-
 #form-page {
     display: none;
     max-width: 400px;
@@ -66,4 +60,55 @@ img {
 
 #form-page #submit-btn:hover {
     background-color: #218838;
+}
+
+/* Modal Styles */
+.modal {
+    display: none; /* Ocultarlo por defecto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.modal-content h2 {
+    margin-bottom: 20px;
+}
+
+.modal-content p {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+/* Estilo especial para el texto "Bienvenido al evento" */
+#event-welcome-text {
+    font-size: 20px;
+    font-weight: bold;
+    color: #28a745; /* Verde para resaltar */
+    margin-top: 20px;
+}
+
+/* Centrando la imagen dentro del modal */
+.modal-content img {
+    max-width: 80%;
+    margin: 20px auto;
+    display: block; /* Asegura que la imagen esté centrada */
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 95%;
+        padding: 10px;
+    }
 }

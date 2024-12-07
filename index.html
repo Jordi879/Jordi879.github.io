@@ -7,10 +7,22 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Modal de bienvenida -->
+    <div id="welcome-modal" class="modal">
+        <div class="modal-content">
+            <p>Da click en resgistrarse para poder continuar</p>
+            <p id="event-welcome-text">¡Bienvenid@!</p>
+            <img src="src/legrand.png" alt="Legrand">
+            <button id="continue-modal-btn" class="btn">Registrarse</button>
+        </div>
+    </div>
+
+    <!-- Contenido principal -->
     <div id="landing-page" class="container">
         <img src="/api/placeholder/400/300" alt="Imagen de Ejemplo">
         <button id="continue-btn" class="btn">Continuar</button>
     </div>
+    
     <div id="form-page" class="container">
         <form id="user-form">
             <input type="email" id="email" placeholder="Correo electrónico" required>
@@ -19,6 +31,7 @@
         </form>
         <p id="click-count">Número de clicks: 0</p>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
