@@ -107,6 +107,18 @@ img {
     background-color: #3c68a8b2;
 }
 
+
+#click-count {
+    color: white; /* Cambia el color del texto a blanco */
+}
+
+#click-count {
+    color: white; /* Texto blanco */
+    padding: 5px 10px; /* Espaciado alrededor del texto */
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+
 /* Media Query para dispositivos móviles */
 @media (max-width: 600px) {
     .container {

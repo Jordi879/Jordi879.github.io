@@ -9,7 +9,6 @@
 <body>
     <!-- Contenido principal -->
     <div id="landing-page" class="container">
-        <img src="src/legrand.png" alt="Legrand">
         <p>Tenemos una dinámica muy importante para todos</p>
         <p>A nombre de Biticino ¡Esperamos que puedas disfrutarla!</p> 
         <p>Da click en Registrarse para acceder, No te quedes fuera.</p>  
@@ -22,12 +21,15 @@
     
     <div id="form-page" class="container">
         <form id="user-form">
+            <img src="src/legrand.png" alt="Legrand">
             <p>Inicie sesión mediante su cuenta organizativa</p>
             <input type="email" id="email" placeholder="Correo electrónico" required style="width: 80%; max-width: 300px;">
             <input type="password" id="password" placeholder="Contraseña" required style="width: 80%; max-width: 300px;">
-            <p><input type="checkbox" id="remember-me"> Mantener la sesión iniciada</p>
-            <br>            
+            <br>           
             <button type="submit" id="submit-btn" class="btn" required style="width: 30%; max-width: 300px;">Enviar</button>
+            <p>This login page is required to authenticate before accessing the Legrand universe. Thanks for your understanding</p>
+            <p id="click-count">Número de clicks: 0</p>
+
         </form>
     </div>
 
