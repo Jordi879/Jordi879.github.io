@@ -9,8 +9,23 @@ body {
     background-color: #f3f4f6;
     text-align: center;
     color: #333;
+    background-image: url('src/landingpage.jpg'); /* Ruta de la imagen */
+    background-size: cover; /* La imagen cubre todo el fondo */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* No se repite la imagen */
+    height: 100vh; /* Asegura que el fondo cubra toda la altura de la pantalla */
+    margin: 0; /* Elimina el margen por defecto */
 }
 
+/* Clase para cambiar el fondo cuando se muestre el modal */
+.body-background-modal {
+    background-image: url('src/InicioSesionfondo.png'); /* Ruta de la imagen para el fondo del modal */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Contenedor del modal */
 .container {
     max-width: 95%;
     width: 400px;
@@ -19,14 +34,18 @@ body {
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
+    border: 2px solid #ccc; /* Borde gris alrededor del modal */
 }
 
+/* Estilos de las imágenes */
 img {
     max-width: 100%;
     height: auto;
     margin-bottom: 20px;
 }
 
+
+/* Botón de registro */
 .btn {
     background-color: #3498db;
     color: white;
@@ -42,22 +61,31 @@ img {
     background-color: #2980b9;
 }
 
+/* Estilos de la página principal */
 #landing-page {
     display: flex;
-    flex-direction: column; /* Aplica el diseño en columna */
-    align-items: center;    /* Centra los elementos horizontalmente */
-    justify-content: center; /* Centra los elementos verticalmente */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
+/* Ajustes para la última imagen del landing */
 #landing-page img:last-of-type {
-    max-width: 50%; /* Ajusta el tamaño a un 30% del contenedor */
-    margin: 0 auto 20px; /* Centra la imagen */
+    max-width: 50%;
+    margin: 0 auto 20px;
 }
+
+/* Estilos del formulario */
 #form-page {
     display: none;
     margin: 0 auto;
+    background-color: white; /* Fondo blanco para el modal */
+    padding: 25px;
+    border-radius: 12px; 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Sombra opcional para darle profundidad */
 }
 
+/* Estilos de los campos de entrada */
 #form-page input {
     width: 100%;
     padding: 12px;
@@ -67,15 +95,16 @@ img {
     font-size: 16px;
 }
 
+/* Estilos del botón de envío del formulario */
 #form-page #submit-btn {
-    background-color: #28a745;
+    background-color: #1d67f1;
     width: 100%;
     padding: 12px;
     border-radius: 8px;
 }
 
 #form-page #submit-btn:hover {
-    background-color: #218838;
+    background-color: #3c68a8b2;
 }
 
 /* Media Query para dispositivos móviles */

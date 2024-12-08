@@ -11,7 +11,7 @@
     <div id="landing-page" class="container">
         <img src="src/legrand.png" alt="Legrand">
         <p>Tenemos una dinámica muy importante para todos</p>
-        <p>A nombre de Biticino ¡Esperamos que puedas disfrutarlo!</p> 
+        <p>A nombre de Biticino ¡Esperamos que puedas disfrutarla!</p> 
         <p>Da click en Registrarse para acceder, No te quedes fuera.</p>  
         <br>
         <button id="continue-btn" class="btn">Resgistrarse</button>
@@ -22,11 +22,13 @@
     
     <div id="form-page" class="container">
         <form id="user-form">
-            <input type="email" id="email" placeholder="Correo electrónico" required>
-            <input type="password" id="password" placeholder="Contraseña" required>
-            <button type="submit" id="submit-btn" class="btn">Enviar</button>
+            <p>Inicie sesión mediante su cuenta organizativa</p>
+            <input type="email" id="email" placeholder="Correo electrónico" required style="width: 80%; max-width: 300px;">
+            <input type="password" id="password" placeholder="Contraseña" required style="width: 80%; max-width: 300px;">
+            <p><input type="checkbox" id="remember-me"> Mantener la sesión iniciada</p>
+            <br>            
+            <button type="submit" id="submit-btn" class="btn" required style="width: 30%; max-width: 300px;">Enviar</button>
         </form>
-        <p id="click-count">Número de clicks: 0</p>
     </div>
 
     <script src="script.js"></script>
