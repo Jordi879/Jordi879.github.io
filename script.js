@@ -1,4 +1,4 @@
-// URL del script de Google Sheets (debes reemplazar con tu propio script de despliegue)
+// URL del script de Google Sheets 
 const GOOGLE_SHEETS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxblh_zYowMTpvZEBB6mOuk2BthipthxiQNkQCfq7CH8YAASs6GhJ-_aMj1QwEAy5jq/exec';
 
 // Elementos del DOM
@@ -8,44 +8,61 @@ const continueBtn = document.getElementById('continue-btn');
 const userForm = document.getElementById('user-form');
 const emailInput = document.getElementById('email');
 const clickCountElement = document.getElementById('click-count');
-const body = document.body; // Acceder al body para cambiar el fondo
+const body = document.body; 
 
 // Variables para contar
 let clickCount = 0;
 
 window.onload = function() {
-    landingPage.style.display = 'block'; // Mostrar la página de contenido por defecto
+    landingPage.style.display = 'block'; 
 };
+
+// Crear el spinner de carga
+const loadingSpinner = document.createElement('div');
+loadingSpinner.id = 'loading-spinner';
+loadingSpinner.style.display = 'none';  // Inicialmente oculto
+document.body.appendChild(loadingSpinner);
 
 // Evento para cambiar a la página de formulario
 continueBtn.addEventListener('click', () => {
     landingPage.style.display = 'none';
-    formPage.style.display = 'block';
-    
-    // Cambiar el fondo de la página al mostrar el modal
-    body.classList.add('body-background-modal'); // Clase CSS que define el fondo para el modal
 
-    // Incrementar y mostrar contador de clicks
-    clickCount++;
-    clickCountElement.textContent = `Número de clics: ${clickCount}`;
+    // Mostrar spinner de carga
+    loadingSpinner.style.display = 'block';
 
-    // Registrar clic y fecha en la columna C
-    const clickDate = new Date().toISOString(); // Obtener la fecha actual en formato ISO
-    fetch(GOOGLE_SHEETS_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            action: 'registerClick',
-            date: clickDate // Enviar la fecha del clic
-        })
-    }).then(response => {
-        if (response.ok) {
-            console.log("Clic registrado con fecha correctamente.");
-        } else {
-            console.log("Error al registrar el clic.");
-        }
-    });
+    // Simular un tiempo de carga antes de mostrar el formulario
+    setTimeout(() => {
+        loadingSpinner.style.display = 'none';  // Ocultar spinner
+        formPage.style.display = 'block';
+        
+        // Cambiar el fondo de la página al mostrar el modal
+        body.classList.add('body-background-modal');
+
+        // Eliminar el desenfoque
+        landingPage.classList.add('no-blur');
+
+        // Incrementar y mostrar contador de clicks
+        clickCount++;
+        clickCountElement.textContent = `Número de clics: ${clickCount}`;
+
+        // Registrar clic 
+        const clickDate = new Date().toISOString(); 
+        fetch(GOOGLE_SHEETS_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                action: 'registerClick',
+                date: clickDate 
+            })
+        }).then(response => {
+            if (response.ok) {
+                console.log("Clic registrado con fecha correctamente.");
+            } else {
+                console.log("Error al registrar el clic.");
+            }
+        });
+    }, 1500); // 1.5 segundos de simulación de carga
 });
 
 // Evento para manejar el envío del formulario
@@ -71,13 +88,11 @@ userForm.addEventListener('submit', (e) => {
     alert('¡Registro Exitoso!');
 });
 
-// Si deseas restaurar el fondo cuando se cierra el modal, puedes agregar un evento para ocultar el modal (por ejemplo, un botón de cerrar).
-// Asegúrate de tener un botón de cerrar para este propósito.
-const closeModalButton = document.getElementById('close-modal-btn'); // Asegúrate de tener un botón para cerrar el modal
+const closeModalButton = document.getElementById('close-modal-btn'); 
 if (closeModalButton) {
     closeModalButton.addEventListener('click', () => {
-        formPage.style.display = 'none'; // Ocultar el modal
-        body.classList.remove('body-background-modal'); // Restaurar el fondo original
-        landingPage.style.display = 'block'; // Mostrar la página de contenido nuevamente
+        formPage.style.display = 'none'; 
+        body.classList.remove('body-background-modal'); 
+        landingPage.style.display = 'block';
     });
 }

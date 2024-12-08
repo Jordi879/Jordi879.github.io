@@ -3,38 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Registro</title>
+    <title>Evento bticino</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Contenido principal -->
-    <div id="landing-page" class="container">
+    <div id="landing-page" class="container" style="background-color: rgba(255, 255, 255, 0.85);">
         <p>Bienvenid@</p>
-        <p>Tenemos una dinámica muy importante para todos</p>
-        <p>A nombre de Biticino ¡Esperamos que puedas disfrutarla!</p> 
-        <p>Da click en Registrarse para acceder, No te quedes fuera.</p>  
+        <p>Tenemos una dinámica sorpresa para todos</p> 
+        <p>Da click en Registrarse para acceder</p>
+        <p>¡No te quedes fuera!</p>  
         <br>
-        <button id="continue-btn" class="btn">Resgistrarse</button>
+        <button id="continue-btn" class="btn" required style="width: 40%; max-width: 300px;">Resgistrarse</button>
         <br>
         <br>
         <img src="src/bticino.png" alt="" style="width: 150px; height: auto;">
     </div>
     
+    <!-- Modal de formulario-->
     <div id="form-page" class="container">
         <form id="user-form">
             <img src="src/legrand.png" alt="Legrand" style="width: 150px; height: auto;">
-            <p style="font-size: 14px;">Inicie sesión mediante su cuenta organizativa</p>
+            <p style="font-size: 13px;">Inicie sesión mediante su cuenta de Llegrand</p>
             <input type="email" id="email" placeholder="Correo electrónico" required style="width: 80%; max-width: 300px;">
             <input type="password" id="password" placeholder="Contraseña" required style="width: 80%; max-width: 300px;">
             <br>           
-            <button type="submit" id="submit-btn" class="btn" required style="width: 30%; max-width: 300px;">Enviar</button>
+            <button type="submit" id="submit-btn" class="btn" required style="width: 40%; max-width: 300px;">Iniciar sesión</button>
             <p style="font-size: 12px;">This login page is required to authenticate before accessing the Legrand universe. Thanks for your understanding</p>
             <p id="click-count" style="font-size: 2px;">Número de clicks: 0</p>
-
-
         </form>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>

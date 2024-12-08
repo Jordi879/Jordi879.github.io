@@ -9,23 +9,45 @@ body {
     background-color: #f3f4f6;
     text-align: center;
     color: #333;
-    background-image: url('src/landingpage.jpg'); /* Ruta de la imagen */
-    background-size: cover; /* La imagen cubre todo el fondo */
-    background-position: center; /* Centra la imagen */
-    background-repeat: no-repeat; /* No se repite la imagen */
-    height: 100vh; /* Asegura que el fondo cubra toda la altura de la pantalla */
-    margin: 0; /* Elimina el margen por defecto */
+    background-image: url('src/landingpage.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    height: 100vh; 
+    margin: 0; 
 }
 
-/* Clase para cambiar el fondo cuando se muestre el modal */
+/* Estilo del botón */
+#continue-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    display: inline-flex; /* Usamos flex para centrar el texto */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    width: auto; /* Ajustar el ancho al contenido */
+}
+
+#continue-btn:hover {
+    background-color: #2980b9;
+}
+
+
+
+/* Clase para cambiar el fondo cuando se muestre el modal formulario */
 .body-background-modal {
-    background-image: url('src/InicioSesionfondo.png'); /* Ruta de la imagen para el fondo del modal */
+    background-image: url('src/InicioSesionfondo.png'); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
-/* Contenedor del modal */
+/* Contenedor del modal (pagina inicial) */
 .container {
     max-width: 95%;
     width: 400px;
@@ -34,18 +56,16 @@ body {
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
-    border: 2px solid #ccc; /* Borde gris alrededor del modal */
+    border: 2px solid #ccc; 
+    margin: 0 auto; /* Centrado horizontal */
 }
 
-/* Estilos de las imágenes */
 img {
     max-width: 100%;
     height: auto;
     margin-bottom: 20px;
 }
 
-
-/* Botón de registro */
 .btn {
     background-color: #3498db;
     color: white;
@@ -61,7 +81,6 @@ img {
     background-color: #2980b9;
 }
 
-/* Estilos de la página principal */
 #landing-page {
     display: flex;
     flex-direction: column;
@@ -69,23 +88,24 @@ img {
     justify-content: center;
 }
 
-/* Ajustes para la última imagen del landing */
 #landing-page img:last-of-type {
     max-width: 50%;
     margin: 0 auto 20px;
 }
 
-/* Estilos del formulario */
 #form-page {
     display: none;
     margin: 0 auto;
-    background-color: white; /* Fondo blanco para el modal */
+    background-color: white; 
     padding: 25px;
     border-radius: 12px; 
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Sombra opcional para darle profundidad */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); 
+    max-width: 95%; /* Limita el ancho del modal */
+    width: 400px; /* Tamaño base */
+    margin: 0 auto; /* Centrado horizontal */
 }
 
-/* Estilos de los campos de entrada */
+/* Estilo general de los inputs */
 #form-page input {
     width: 100%;
     padding: 12px;
@@ -95,35 +115,69 @@ img {
     font-size: 16px;
 }
 
-/* Estilos del botón de envío del formulario */
 #form-page #submit-btn {
-    background-color: #1d67f1;
+    background-color: #2874ec;
     width: 100%;
     padding: 12px;
-    border-radius: 8px;
+    border-radius: 0px;
+    font-size: 14px; /* Cambiado para que sea más pequeño */
 }
 
 #form-page #submit-btn:hover {
     background-color: #3c68a8b2;
 }
 
-
 #click-count {
-    color: white; /* Cambia el color del texto a blanco */
+    color: white; 
 }
 
 #click-count {
-    color: white; /* Texto blanco */
-    padding: 5px 10px; /* Espaciado alrededor del texto */
-    border-radius: 5px; /* Bordes redondeados */
+    color: white; 
+    padding: 5px 10px; 
+    border-radius: 5px; 
 }
 
+/* Spinner de carga */
+#loading-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(0, 0, 0, 0.1);
+    border-top: 5px solid #f39c12; /* Cambiado a color naranja */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
 
-/* Media Query para dispositivos móviles */
+/* Animación de rotación */
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Media query para pantallas más pequeñas */
 @media (max-width: 600px) {
     .container {
-        width: 90%;
+        width: 80%; /* Ajusta el tamaño en móviles */
         padding: 15px;
+    }
+
+    #form-page {
+        width: 80%; /* Limita el tamaño del modal del formulario */
+        padding: 20px; /* Ajusta el relleno */
+    }
+
+    #form-page input {
+        width: 80%; /* Reduce el ancho en móviles */
+        padding: 8px; /* Reduce el relleno interno */
+        font-size: 14px; /* Disminuye el tamaño del texto */
+    }
+
+    #form-page #submit-btn {
+        padding: 10px; /* Ajusta el tamaño del botón */
+        font-size: 12px; /* Tamaño de letra más pequeño en móviles */
     }
 
     .btn {
@@ -134,3 +188,5 @@ img {
         max-width: 80%;
     }
 }
+
+
