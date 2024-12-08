@@ -1,21 +1,24 @@
 /* Estilos generales */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #f0f0f0;
+    background-color: #f3f4f6;
     text-align: center;
+    color: #333;
 }
 
 .container {
-    max-width: 90%;
-    padding: 20px;
+    max-width: 95%;
+    width: 400px;
+    padding: 25px;
     background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
 
 img {
@@ -25,98 +28,68 @@ img {
 }
 
 .btn {
-    background-color: #007bff;
+    background-color: #3498db;
     color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 12px 25px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    font-size: 16px;
 }
 
 .btn:hover {
-    background-color: #0056b3;
+    background-color: #2980b9;
 }
 
+#landing-page {
+    display: flex;
+    flex-direction: column; /* Aplica el diseño en columna */
+    align-items: center;    /* Centra los elementos horizontalmente */
+    justify-content: center; /* Centra los elementos verticalmente */
+}
+
+#landing-page img:last-of-type {
+    max-width: 50%; /* Ajusta el tamaño a un 30% del contenedor */
+    margin: 0 auto 20px; /* Centra la imagen */
+}
 #form-page {
     display: none;
-    max-width: 400px;
     margin: 0 auto;
-}
-
-
-#welcome-modal {
-    background-image: url('src/landingpage.jpg');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
 #form-page input {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
 }
 
 #form-page #submit-btn {
-    width: 100%;
-    padding: 10px;
     background-color: #28a745;
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
 }
 
 #form-page #submit-btn:hover {
     background-color: #218838;
 }
 
-/* Modal Styles */
-.modal {
-    display: none; /* Ocultarlo por defecto */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-}
-
-.modal-content h2 {
-    margin-bottom: 20px;
-}
-
-.modal-content p {
-    margin-top: 10px;
-    font-size: 18px;
-}
-
-/* Estilo especial para el texto "Bienvenido al evento" */
-#event-welcome-text {
-    font-size: 20px;
-    font-weight: bold;
-    color: #28a745; /* Verde para resaltar */
-    margin-top: 20px;
-}
-
-/* Centrando la imagen dentro del modal */
-.modal-content img {
-    max-width: 80%;
-    margin: 20px auto;
-    display: block; /* Asegura que la imagen esté centrada */
-}
-
+/* Media Query para dispositivos móviles */
 @media (max-width: 600px) {
     .container {
-        width: 95%;
-        padding: 10px;
+        width: 90%;
+        padding: 15px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    #landing-page img {
+        max-width: 80%;
     }
 }
