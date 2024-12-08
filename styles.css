@@ -37,7 +37,25 @@ body {
     background-color: #2980b9;
 }
 
+/* Spinner azul antes de la página de aterrizaje */
+#blue-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid rgba(0, 0, 255, 0.1); /* Azul claro */
+    border-top: 5px solid #3498db; /* Azul más fuerte */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spinBlue 1s linear infinite;
+}
 
+/* Animación del spinner azul */
+@keyframes spinBlue {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
 
 /* Clase para cambiar el fondo cuando se muestre el modal formulario */
 .body-background-modal {
@@ -137,7 +155,7 @@ img {
     border-radius: 5px; 
 }
 
-/* Spinner de carga */
+/* Spinner de carga naranja */
 #loading-spinner {
     position: absolute;
     top: 50%;
@@ -188,5 +206,3 @@ img {
         max-width: 80%;
     }
 }
-
-

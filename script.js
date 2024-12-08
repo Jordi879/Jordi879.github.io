@@ -14,7 +14,14 @@ const body = document.body;
 let clickCount = 0;
 
 window.onload = function() {
-    landingPage.style.display = 'block'; 
+    // Mostrar el spinner azul antes de mostrar la landing page
+    document.getElementById('blue-spinner').style.display = 'block';
+
+    // Luego de 1 segundo, ocultar el spinner azul y mostrar la página de aterrizaje
+    setTimeout(() => {
+        document.getElementById('blue-spinner').style.display = 'none';
+        landingPage.style.display = 'block';
+    }, 1000); // Cambiar a 1 segundo de espera
 };
 
 // Crear el spinner de carga
