@@ -1,77 +1,80 @@
 // URL del script de Google Sheets 
-const GOOGLE_SHEETS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzm2JJ3djKannf0kN85h8Fvwu38LKg4Xj7keghEVCJqvpMjzHvxVRea_GLt297NyykB/exec';
+const GOOGLE_SHEETS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwOPwJjbH6hVY1cJ2KB8TVxFPE56ZX30oBnDt2J05zQU1fDT-y1q4hQu0_tuCW2-aAT/exec';
 
 // Elementos del DOM
-const landingPage = document.getElementById('landing-page'); // Página de aterrizaje
-const formPage = document.getElementById('form-page'); // Página del formulario
-const continueBtn = document.getElementById('continue-btn'); // Botón "Continuar"
-const userForm = document.getElementById('user-form'); // Formulario
-const emailInput = document.getElementById('email'); // Campo de entrada para el correo electrónico
-const clickCountElement = document.getElementById('click-count'); // Elemento para mostrar el contador de clics
-const body = document.body; // Elemento <body>
+const landingPage = document.getElementById('landing-page');
+const formPage = document.getElementById('form-page');
+const continueBtn = document.getElementById('continue-btn');
+const userForm = document.getElementById('user-form');
+const emailInput = document.getElementById('email');
+const clickCountElement = document.getElementById('click-count');
+const body = document.body;
 
 // Variables para contar
-let clickCount = 0; // Contador de clics
+let clickCount = 0;
 
 window.onload = function () {
+    // Mostrar el spinner azul antes de mostrar la landing page
     document.getElementById('blue-spinner').style.display = 'block';
 
-    // Enviar evento de carga del spinner
+    // Registrar la carga del spinner azul como una visita en la columna C
     fetch(GOOGLE_SHEETS_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
-        headers: {
-            'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            action: 'registerSpinnerLoad', // Acción para registrar el spinner
-        }),
-    })
-        .then(() => console.log("Evento de carga del spinner enviado."))
-        .catch((err) => console.error("Error al registrar spinner:", err));
+            action: 'registerVisit' // Acción para registrar visitas
+        })
+    }).then(() => {
+        console.log("Visita registrada con éxito.");
+    }).catch(err => {
+        console.error("Error al registrar la visita:", err);
+    });
 
-    // Después de 1 segundo, ocultar el spinner y mostrar la página principal
+    // Luego de 1 segundo, ocultar el spinner azul y mostrar la página de aterrizaje
     setTimeout(() => {
         document.getElementById('blue-spinner').style.display = 'none';
         landingPage.style.display = 'block';
-    }, 1000);
+    }, 1000); // Cambiar a 1 segundo de espera
 };
 
-
-// Crear un spinner de carga adicional para la transición entre páginas
+// Crear el spinner de carga
 const loadingSpinner = document.createElement('div');
 loadingSpinner.id = 'loading-spinner';
 loadingSpinner.style.display = 'none';  // Inicialmente oculto
-document.body.appendChild(loadingSpinner); // Agregar el spinner al DOM
+document.body.appendChild(loadingSpinner);
 
-// Evento para cambiar de la página de aterrizaje al formulario
+// Evento para cambiar a la página de formulario
 continueBtn.addEventListener('click', () => {
-    landingPage.style.display = 'none'; // Ocultar la página de aterrizaje
+    landingPage.style.display = 'none';
 
     // Mostrar spinner de carga
     loadingSpinner.style.display = 'block';
 
     // Simular un tiempo de carga antes de mostrar el formulario
     setTimeout(() => {
-        loadingSpinner.style.display = 'none';  // Ocultar el spinner de carga
-        formPage.style.display = 'block'; // Mostrar el formulario
+        loadingSpinner.style.display = 'none';  // Ocultar spinner
+        formPage.style.display = 'block';
 
-        // Cambiar el fondo de la página al mostrar el formulario
+        // Cambiar el fondo de la página al mostrar el modal
         body.classList.add('body-background-modal');
+
+        // Eliminar el desenfoque
+        landingPage.classList.add('no-blur');
 
         // Incrementar y mostrar contador de clics
         clickCount++;
         clickCountElement.textContent = `Número de clics: ${clickCount}`;
 
-        // Registrar el clic con la fecha actual
-        const clickDate = new Date().toISOString(); 
+        // Registrar clic 
+        const clickDate = new Date().toISOString();
         fetch(GOOGLE_SHEETS_SCRIPT_URL, {
             method: 'POST',
-            mode: 'no-cors', // Evita errores de CORS
+            mode: 'no-cors',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                action: 'registerClick', // Acción para registrar clics
-                date: clickDate // Fecha del clic
+                action: 'registerClick',
+                date: clickDate
             })
         }).then(response => {
             if (response.ok) {
@@ -80,38 +83,37 @@ continueBtn.addEventListener('click', () => {
                 console.log("Error al registrar el clic.");
             }
         });
-    }, 1500); // Simular 1.5 segundos de tiempo de carga
+    }, 1500); // 1.5 segundos de simulación de carga
 });
 
 // Evento para manejar el envío del formulario
 userForm.addEventListener('submit', (e) => {
-    e.preventDefault(); // Evitar que la página se recargue al enviar el formulario
-    
-    // Obtener el correo ingresado
+    e.preventDefault();
+
+    // Obtener correo
     const email = emailInput.value;
 
-    // Enviar el correo a Google Sheets
+    // Enviar correo a Google Sheets
     fetch(GOOGLE_SHEETS_SCRIPT_URL, {
         method: 'POST',
-        mode: 'no-cors', // Evita errores de CORS
+        mode: 'no-cors',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            action: 'registerEmail', // Acción para registrar el correo
-            email: email // Correo ingresado
+            action: 'registerEmail',
+            email: email
         })
     });
 
-    alert('¡Registro Exitoso!'); // Mostrar mensaje de éxito
+    alert('¡Registro Exitoso!');
 });
 
-// Evento para manejar el cierre del formulario
-const closeModalButton = document.getElementById('close-modal-btn'); 
+const closeModalButton = document.getElementById('close-modal-btn');
 if (closeModalButton) {
     closeModalButton.addEventListener('click', () => {
-        formPage.style.display = 'none'; // Ocultar el formulario
-        body.classList.remove('body-background-modal'); // Restaurar el fondo original
-        landingPage.style.display = 'block'; // Volver a mostrar la página de aterrizaje
+        formPage.style.display = 'none';
+        body.classList.remove('body-background-modal');
+        landingPage.style.display = 'block';
     });
 }
