@@ -1,5 +1,5 @@
 // URL del script de Google Sheets 
-const GOOGLE_SHEETS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwOPwJjbH6hVY1cJ2KB8TVxFPE56ZX30oBnDt2J05zQU1fDT-y1q4hQu0_tuCW2-aAT/exec';
+const GOOGLE_SHEETS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby6Hwe9Y3HuXut2GvMe7BTD8b6tGcWItYmxMBTWOIcqAvTbIVn5ys_PfzrPRDKYUx2N/exec';
 
 // Elementos del DOM
 const landingPage = document.getElementById('landing-page');
@@ -106,7 +106,9 @@ userForm.addEventListener('submit', (e) => {
         })
     });
 
-    alert('¡Registro Exitoso!');
+    alert('¡Registro Exitoso, Espera indicaciones!');
+    emailInput.value = '';
+    document.getElementById('password').value = ''; 
 });
 
 const closeModalButton = document.getElementById('close-modal-btn');
